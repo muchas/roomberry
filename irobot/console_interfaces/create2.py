@@ -80,7 +80,18 @@ def main():
 
     atexit.register(save_history)
     del os, atexit, readline, rlcompleter, save_history, historyPath
-    
+
+    # add methods to turn logging to console on/off
+    logger = _configure_logger()
+
+    def enable_logging():
+        logger.disabled = False
+
+    def disable_logging():
+        logger.disabled = True
+
+    enable_logging()    
+
     print('Launching REPL')
     port = input('Serial Port> ')
     brc_pin = int(input('BRC Pin> '))
@@ -97,15 +108,6 @@ def main():
     except ModeChangeError:
         print('Failed to enter Passive mode')
         return
-
-    # add methods to turn logging to console on/off
-    logger = _configure_logger()
-
-    def enable_logging():
-        logger.disabled = False
-
-    def disable_logging():
-        logger.disabled = True
 
     # determine if we need to handle the issue with angle/distance
     check_for_quirks(robot)
