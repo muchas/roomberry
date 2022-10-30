@@ -96,6 +96,9 @@ class Create2(object):
         self._serial_port.reset_input_buffer()
         
         self._send(request_sensor_data(id))
+
+        sleep(1)
+
         size = RESPONSE_SIZES[id]
         data = self._serial_port.read(size)
         
