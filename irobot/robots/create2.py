@@ -155,7 +155,8 @@ class Create2(object):
 
     def _verify_mode(self, mode):
         if self.oi_mode != mode:
-            raise ModeChangeError(mode, self._oi_mode)
+            self.logger.error("unexpected oi mode [expected: {}, got: {}]".format(mode, self._oi_mode))
+            # raise ModeChangeError(mode, self._oi_mode)
 
     @staticmethod
     def _is_valid_hour(hour):
