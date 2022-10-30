@@ -93,8 +93,8 @@ def main():
     enable_logging()    
 
     print('Launching REPL')
-    port = input('Serial Port> ')
-    brc_pin = int(input('BRC Pin> '))
+    port = input('Serial Port (/dev/serial0) > ') or '/dev/serial0'
+    brc_pin = int(input('BRC Pin (0)> ')) or 0
     print()
     
     # give the user a way out before we launch into interactive mode
