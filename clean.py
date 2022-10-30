@@ -41,6 +41,16 @@ def turn_right(robot, radians, velocity=100):
     robot.drive(0, 0)
 
 
+def turn_left(robot, radians, velocity=100):
+    radius = 100  # 10 cm
+    distance = radius * radians
+    duration = abs(distance / velocity)
+    robot.logger.info("turning right for {} seconds with {} mm/s".format(duration, velocity))
+    robot.drive(int(math.copysign(velocity, distance)), DRIVE.TURN_IN_PLACE_CCW)
+    sleep(duration)
+    robot.drive(0, 0)
+
+
 # 20 mm per second (2 cm/s)
 def drive_straight(robot, distance, velocity=200):
     duration = abs(distance / velocity)
@@ -50,13 +60,13 @@ def drive_straight(robot, distance, velocity=200):
     robot.drive_straight(0)
 
 
-def drive_straight_until_wall(robot, velocity=200):
+def drive_straight_until_wall(robot, velocity=160):
     hit_wall = False
     while not hit_wall:
         robot.drive_straight(velocity)
         sleep(0.2)
         light_bumper = robot.light_bumper
-        hit_wall = any((light_bumper.center_left, light_bumper.center_right))
+        hit_wall = any((light_bumper.left, light_bumper.center_left, light_bumper.center_right, light_bumper.right))
     robot.drive_straight(0)
 
 
@@ -75,7 +85,7 @@ def main():
         turn_right(robot, math.pi / 2)  # turn right by 90 degrees
         drive_straight_until_wall(robot)
 
-        drive_straight(robot, -100)  # move back 10 cm
+        drive_straight(robot, -110)  # move back 11 cm
         turn_right(robot, math.pi / 2)
         drive_straight_until_wall(robot)
 
@@ -83,6 +93,10 @@ def main():
         turn_right(robot, math.pi)
 
         drive_straight(robot, 1800) # move forward 180 ccm
+        turn_left(robot, math.pi / 2)
+
+        drive_straight(robot, 3000)  # move forward 300 cm
+        robot.seek_dock()
 
         robot.oi_mode = MODES.PASSIVE
         robot.close()
