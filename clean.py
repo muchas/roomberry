@@ -1,6 +1,7 @@
 import math
 import logging
 
+from sys import stdout
 from time import sleep
 
 from irobot.robots.create2 import Create2, RobotConnectionError, ModeChangeError
