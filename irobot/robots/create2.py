@@ -214,6 +214,11 @@ class Create2(object):
         welcome_message = self._serial_port.read(1024).decode('utf-8')
         if welcome_message is not None:
             self.logger.info('First 1024 characters of welcome message: {0}'.format(welcome_message))
+
+        sleep_time = 10
+        self.logger.info("Wait {} seconds after sending start() message".format(sleep_time))
+        sleep(sleep_time)
+
         # flush anything after the first 1024 bytes
         self._serial_port.reset_input_buffer()
 
