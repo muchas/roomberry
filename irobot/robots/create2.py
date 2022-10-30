@@ -686,7 +686,8 @@ class Create2(object):
     def firmware_version(self):
         self.reset()
         sleep(5)
-        msg = self._serial_port.read(1024).decode('utf-8')
+        # msg = self._serial_port.read(1024).decode('utf-8')
+        msg = ''
         self.start()
         self._serial_port.reset_input_buffer()  # reset_input_buffer() in pyserial 3.0
         return msg
