@@ -71,7 +71,7 @@ def main():
         robot = Create2(port, brc_pin)
         robot.oi_mode = MODES.SAFE
 
-        drive_straight(robot, -900)  # move back 90 cm
+        drive_straight(robot, -1000)  # move back 90 cm
         turn_right(robot, math.pi / 2)  # turn right by 90 degrees
         drive_straight_until_wall(robot)
 
