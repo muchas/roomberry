@@ -53,7 +53,8 @@ def drive_straight(robot, distance, velocity=100):
 def drive_straight_until_wall(robot, velocity=100):
     hit_wall = False
     while not hit_wall:
-        drive_straight(robot, 20)
+        robot.drive_straight(velocity)
+        sleep(0.5)
         light_bumper = robot.light_bumper
         hit_wall = any((light_bumper.center_left, light_bumper.center_right))
     robot.drive_straight(0)
