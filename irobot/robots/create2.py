@@ -211,9 +211,9 @@ class Create2(object):
         self._send(start())
 
         # read data waiting on start
-        welcome_message = self._serial_port.read(1024)
+        welcome_message = self._serial_port.read(1024).decode('ascii')
         if welcome_message is not None:
-            self.logger.info('First 1024 characters of welcome message: {0}'.format(welcome_message).decode('utf-8'))
+            self.logger.info('First 1024 characters of welcome message: {0}'.format(welcome_message))
 
         sleep_time = 10
         self.logger.info("Wait {} seconds after sending start() message".format(sleep_time))
