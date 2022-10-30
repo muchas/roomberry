@@ -110,7 +110,7 @@ def main():
         return
 
     # determine if we need to handle the issue with angle/distance
-    check_for_quirks(robot)
+    # check_for_quirks(robot)
 
     # add our goodies to the scope
     # I hope the Python powers don't come to get me foe doing this

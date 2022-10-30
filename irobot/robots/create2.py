@@ -125,7 +125,7 @@ class Create2(object):
 
     @staticmethod
     def _format_data(data):
-        data = iterbytes(data)
+        data = list(iterbytes(data))
         return 'Decimal:\t[{0}]\nHex:\t\t[{1}]\nBin:\t\t[{2}]'.format(
             '|'.join(('{0:d}'.format(b)) for b in data),
             '|'.join(('{0:X}'.format(b)) for b in data),
@@ -685,9 +685,8 @@ class Create2(object):
     @property
     def firmware_version(self):
         self.reset()
-        sleep(5)
-        # msg = self._serial_port.read(1024).decode('utf-8')
-        msg = ''
+        sleep(10)
+        msg = self._serial_port.read(1024).decode('utf-8')
         self.start()
         self._serial_port.reset_input_buffer()  # reset_input_buffer() in pyserial 3.0
         return msg
