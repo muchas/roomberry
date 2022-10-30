@@ -35,7 +35,8 @@ def turn_right(robot, radians, velocity=20):
     radius = 150  # 15 cm
     distance = radians / radius
     duration = abs(distance / velocity)
-    robot.drive(int(math.copysign(velocity, distance)), DRIVE.TURN_IN_PLACE_CW)
+    robot.logger.info("turning right for {} seconds with {} mm/s".format(duration, velocity))
+    robot.drive(int(math.copysign(velocity, distance)), 20)
     sleep(duration)
     robot.drive(0, 0)
 
@@ -62,7 +63,7 @@ def main():
 
         drive_straight(robot, -800)  # move back 80 cm
         turn_right(robot, 0.785)  # turn right by 90 degrees
-        drive_straight(4000)  # move 400 cm forward
+        drive_straight(robot, 4000)  # move 400 cm forward
 
         robot.oi_mode = MODES.PASSIVE
         robot.close()
