@@ -54,7 +54,7 @@ def drive_straight_until_wall(robot, velocity=200):
     hit_wall = False
     while not hit_wall:
         robot.drive_straight(velocity)
-        sleep(0.5)
+        sleep(0.2)
         light_bumper = robot.light_bumper
         hit_wall = any((light_bumper.center_left, light_bumper.center_right))
     robot.drive_straight(0)
@@ -75,11 +75,11 @@ def main():
         turn_right(robot, math.pi / 2)  # turn right by 90 degrees
         drive_straight_until_wall(robot)
 
-        drive_straight(robot, -20)  # move back 2 cm
+        drive_straight(robot, -100)  # move back 10 cm
         turn_right(robot, math.pi / 2)
         drive_straight_until_wall(robot)
 
-        drive_straight(robot, -20)
+        drive_straight(robot, -60) # move back 6 cm
         turn_right(robot, math.pi)
 
         drive_straight(robot, 1800) # move forward 180 ccm
