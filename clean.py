@@ -35,7 +35,7 @@ def turn_right(robot, radians, velocity=20):
     radius = 150  # 15 cm
     distance = radians / radius
     duration = abs(distance / velocity)
-    robot.drive(math.copysign(velocity, distance), DRIVE.TURN_IN_PLACE_CW)
+    robot.drive(int(math.copysign(velocity, distance)), DRIVE.TURN_IN_PLACE_CW)
     sleep(duration)
     robot.drive(0, 0)
 
@@ -44,7 +44,7 @@ def turn_right(robot, radians, velocity=20):
 def drive_straight(robot, distance, velocity=20):
     duration = abs(distance / velocity)
     robot.logger.info("driving straight for {} seconds with {} mm/s".format(duration, velocity))
-    robot.drive_straight(math.copysign(velocity, distance))
+    robot.drive_straight(int(math.copysign(velocity, distance)))
     sleep(duration) 
     robot.drive_straight(0)
 
