@@ -50,6 +50,15 @@ def drive_straight(robot, distance, velocity=100):
     robot.drive_straight(0)
 
 
+def drive_straight_until_wall(robot, velocity=100):
+    hit_wall = False
+    while not hit_wall:
+        drive_straight(robot, 20)
+        light_bumper = robot.light_bumper
+        hit_wall = any(light_bumper.center_left, light_bumper.center_right)
+    robot.drive_straight(0)
+
+
 def main():
     # add methods to turn logging to console on/off
     logger = _configure_logger()
@@ -63,7 +72,7 @@ def main():
 
         drive_straight(robot, -900)  # move back 90 cm
         turn_right(robot, math.pi / 2)  # turn right by 90 degrees
-        drive_straight(robot, 4000)  # move 400 cm forward
+        drive_straight_until_wall(robot)
 
         robot.oi_mode = MODES.PASSIVE
         robot.close()
