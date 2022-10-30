@@ -75,6 +75,15 @@ def main():
         turn_right(robot, math.pi / 2)  # turn right by 90 degrees
         drive_straight_until_wall(robot)
 
+        drive_straight(robot, -20)  # move back 2 cm
+        turn_right(robot, math.pi / 2)
+        drive_straight_until_wall(robot)
+
+        drive_straight(robot, -20)
+        turn_right(robot, math.pi)
+
+        drive_straight(robot, 1800) # move forward 180 ccm
+
         robot.oi_mode = MODES.PASSIVE
         robot.close()
 
