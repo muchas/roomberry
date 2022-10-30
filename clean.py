@@ -33,10 +33,10 @@ def _configure_logger():
 
 def turn_right(robot, radians, velocity=60):
     radius = 150  # 15 cm
-    distance = radians / radius
+    distance = radians / (2 * math.pi) * radius
     duration = abs(distance / velocity)
     robot.logger.info("turning right for {} seconds with {} mm/s".format(duration, velocity))
-    robot.drive(int(math.copysign(velocity, distance)), 20)
+    robot.drive(int(math.copysign(velocity, distance)), DRIVE.TURN_IN_PLACE_CW)
     sleep(duration)
     robot.drive(0, 0)
 
@@ -62,7 +62,7 @@ def main():
         robot.oi_mode = MODES.SAFE
 
         drive_straight(robot, -800)  # move back 80 cm
-        turn_right(robot, 0.785)  # turn right by 90 degrees
+        turn_right(robot, math.pi / 2)  # turn right by 90 degrees
         drive_straight(robot, 4000)  # move 400 cm forward
 
         robot.oi_mode = MODES.PASSIVE
