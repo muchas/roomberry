@@ -86,7 +86,7 @@ def main():
         drive_straight_until_wall(robot)
 
         drive_straight(robot, -110)  # move back 11 cm
-        turn_right(robot, math.pi / 2)
+        turn_right(robot, math.pi / 2 + 0.05)
         drive_straight_until_wall(robot)
 
         drive_straight(robot, -60) # move back 6 cm
