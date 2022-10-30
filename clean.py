@@ -31,7 +31,7 @@ def _configure_logger():
     return logger
 
 
-def turn_right(robot, radians, velocity=20):
+def turn_right(robot, radians, velocity=60):
     radius = 150  # 15 cm
     distance = radians / radius
     duration = abs(distance / velocity)
@@ -42,7 +42,7 @@ def turn_right(robot, radians, velocity=20):
 
 
 # 20 mm per second (2 cm/s)
-def drive_straight(robot, distance, velocity=20):
+def drive_straight(robot, distance, velocity=60):
     duration = abs(distance / velocity)
     robot.logger.info("driving straight for {} seconds with {} mm/s".format(duration, velocity))
     robot.drive_straight(int(math.copysign(velocity, distance)))
